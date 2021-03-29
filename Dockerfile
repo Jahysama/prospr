@@ -28,6 +28,7 @@ RUN wget https://ssd.mathworks.com/supportfiles/downloads/R2018a/deployment_file
     cp /usr/lib64/libexpat.so.1 /usr/local/MATLAB/MATLAB_Runtime/v94/bin/glnxa64/libexpat.so.1 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/MATLAB/MATLAB_Runtime/v94/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v94/bin/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v94/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Runtime/v94/extern/bin/glnxa64"
 
+RUN chmod +x /opt/entrypoint.sh
 ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["-h","","","","",""]
 #CMD ["/bin/bash"]
