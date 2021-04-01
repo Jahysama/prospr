@@ -2,6 +2,7 @@
 FROM nvidia/cuda:9.2-devel-centos7
 MAINTAINER Todd Millecam <todd.millecam@gmail.com>
 
+
 RUN yum makecache -y && \
      yum install -y epel-release wget cmake vim octave && \
      yum makecache -y && \
@@ -12,11 +13,15 @@ RUN yum makecache -y && \
      git clone https://github.com/soedinglab/hh-suite.git && \
      mkdir -p hh-suite/build && \
      pip3 install torch ipython pyfiglet scipy requests==2.22.0
+ 
+ADD /data .
+
 WORKDIR hh-suite/build
 RUN cmake .. && \
     make && \
     make install && \
     mkdir -p /prosprdbs
+
 
 COPY ./ /opt/
 WORKDIR /opt/potts
